@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <doclet-version-NOT-library-version>1.07</doclet-version-NOT-library-version>
+    <class>
+        <name>com.biswajit.vosk.SpeechToText</name>
+        <shortname>SpeechToText</shortname>
+        <owner>process</owner>
+        <event>Error(message as String)</event>
+        <event>ReadyToListen</event>
+        <event>ReadyToListenEx</event>
+        <event>ReadyToRead</event>
+        <event>Result(text as String)</event>
+        <event>PartialResult(text as String)</event>
+        <event>FinalResult(text as String)</event>
+        <event>Paused(paused as Boolean)</event>
+        <event>Restarted</event>
+        <event>MicrophoneBuffer(buffer() As Byte)</event>
+        <method>
+            <name>cancel</name>
+            <comment>Cancel microphone recognition. Do not post any new events, simply cancel processing.
+ Does nothing if recognition is not active.
+Return type: @return:true if recognition was actually stopped</comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>prepareListenerEx</name>
+            <comment>Prepare the listener for external audio buffer. On success Eventname_ReadyToListenEx event will be raised.
+ Call startListeningEx to start listening.
+predefinedWords: Add some predefined words/phrase as JSON string. Can be blank.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>predefinedWords</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>startListening</name>
+            <comment>Starts microphone recognition. After specified timeout listening stops and the
+ endOfSpeech signals about that. Does nothing if recognition is active.
+timeout: timeout in milliseconds to listen. -1 = infinite;
+Return type: @return:true if recognition was actually started</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>timeout</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>startReading</name>
+            <comment>Starts file recognition. After specified timeout listening stops and the
+ endOfSpeech signals about that. Does nothing if recognition is active.
+timeout: timeout in milliseconds to listen. -1 = infinite;
+Return type: @return:true if recognition was actually started</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>timeout</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>startListeningEx</name>
+            <comment>Starts external audio buffer recognition.
+Return type: @return:true if recognition was actually started</comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>FeedExternalBuffer</name>
+            <comment>For recognizing the external audio buffer, feed the buffer here.
+ExBuffer: The external audio byte buffer.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ExBuffer</name>
+                <type>byte[]</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Initialize</name>
+            <comment>Initialize the object.
+eventName: The event name prefix.
+modelPath: The model folder path.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ba</name>
+                <type>anywheresoftware.b4a.BA</type>
+            </parameter>
+            <parameter>
+                <name>eventName</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>modelPath</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>pause</name>
+            <comment>Pause microphone recognition.
+pause: Pass true to pause and false to continue.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>pause</name>
+                <type>boolean</type>
+            </parameter>
+        </method>
+        <method>
+            <name>prepareMicrophone</name>
+            <comment>Prepare the microphone for listening. On success Eventname_ReadyToListen event will be raised.
+ Call startListening to start listening.
+predefinedWords: Add some predefined words/phrase as JSON string. Can be blank.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>predefinedWords</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>stop</name>
+            <comment>Stops microphone/file recognition. Listener should receive final result if there is
+ any. Does nothing if recognition is not active.
+ Call this on activity or service closing event.
+Return type: @return:true if recognition was actually stopped</comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>prepareAudioFile</name>
+            <comment>Prepare the audio file for recognition. On success Eventname_ReadyToRead event will be raised.
+ Call startReading to start reading the file.
+audioPath: Audio file path.
+predefinedWords: Add some predefined words/phrase as JSON string. Can be blank.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>audioPath</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>predefinedWords</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>reset</name>
+            <comment>Resets microphone recognizer in a thread, starts microphone recognition over again</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>shutdown</name>
+            <comment>Shutdown the microphone recognizer and release the recorder.
+ Call this on activity or service closing event.</comment>
+            <returntype>void</returntype>
+        </method>
+        <field>
+            <name>sampleRate</name>
+            <comment>Default 16000</comment>
+            <returntype>int</returntype>
+        </field>
+    </class>
+    <version>1.5</version>
+    <author>Biswajit Sarkar</author>
+    <dependsOn>vosk-android-0.3.47.aar</dependsOn>
+    <dependsOn>jna-5.13.0.aar</dependsOn>
+</root>
